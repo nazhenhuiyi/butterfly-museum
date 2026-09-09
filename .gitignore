@@ -1,0 +1,8 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+.npm-cache/
+.shell-temp*
+.browser-tmp/
+.browser-tmp/

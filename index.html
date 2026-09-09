@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#080e12" />
+    <meta name="description" content="一座安静的数字蝴蝶博物馆：近距离观察大蓝闪蝶与帝王蝶，探索翅膀背后的自然科学。" />
+    <title>鳞光 · 蝴蝶博物馆</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="masthead"><a class="brand" href="./" aria-label="鳞光蝴蝶博物馆首页"><span class="brand-icon">⋈</span><span>鳞光<small>蝴蝶博物馆</small></span></a><div class="edition">NATURAL HISTORY COLLECTION <span>数字自然馆 / 01</span></div><span class="live"><i></i> 常设展览</span></header>
+      <main>
+        <section class="gallery" aria-label="交互式蝴蝶展厅">
+          <div class="gallery-heading"><span class="eyebrow">THE WING ARCHIVE</span><h1>方寸之间，<br />一整个自然。</h1><p>慢下来，看见一双翅膀里的宇宙。</p></div>
+          <div id="viewport" tabindex="0" role="region" aria-label="3D蝴蝶。拖动旋转，滚轮缩放，上下方向键切换展品。"><div class="spotlight"></div><div id="fallback" hidden role="status"><strong>暂时无法开启 3D 展厅</strong><p>此设备可能不支持 WebGL 2，或图形上下文已丢失。请尝试开启硬件加速后刷新。仍可浏览完整科普。</p></div></div>
+          <div class="specimen-label"><span id="specimen-number">SPECIMEN 001</span><span>艺术化数字标本 · 背面观察</span></div>
+          <div class="exhibit-nav" aria-label="展品切换，可在此区域上下滑动"><button id="previous" aria-label="上一种蝴蝶">↑</button><span><b id="current-number">01</b> / 02</span><button id="next" aria-label="下一种蝴蝶">↓</button></div>
+          <div class="gallery-bottom"><div class="interaction-hint"><span>↔ 拖动旋转</span><span>⊕ 滚轮 / 双指缩放</span><span class="desktop-hint">Shift + 滚轮切换</span><span class="mobile-hint">右侧上下滑动切换</span></div><div class="tools"><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-in" aria-label="放大">+</button><button id="reset">↺ <span>重置视角</span></button><button id="motion" aria-pressed="false">暂停扇翅</button></div></div>
+        </section>
+        <aside class="information" aria-label="蝴蝶科普信息" tabindex="0"><div class="info-top"><span class="eyebrow">认识这位自然的艺术家</span><span id="family"></span></div><div id="species-content" aria-live="polite" aria-atomic="true"></div><div class="disclaimer"><span>关于这件展品</span><p>模型与翅纹由程序生成，为便于欣赏而作艺术化处理；并非科研复原，不用于物种鉴定。展示以背面色彩为主，腹面不作真实还原。</p></div><details><summary>科学参考 <span>↗</span></summary><ul><li><a href="https://doi.org/10.1098/rspb.1999.0794" target="_blank" rel="noopener noreferrer">Vukusic 等（1999）· 闪蝶鳞片光学研究</a></li><li><a href="https://www.fws.gov/species/monarch-danaus-plexippus" target="_blank" rel="noopener noreferrer">US Fish &amp; Wildlife Service · 帝王蝶</a></li></ul></details></aside>
+      </main>
+      <footer><span>以好奇心，收藏自然。</span><span>两种生命 · 无限细节 <i>✦</i> EXPLORE WITH CARE</span></footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

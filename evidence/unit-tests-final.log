@@ -1,0 +1,50 @@
+
+> butterfly-museum@1.0.0 test
+> node --test tests/unit.test.js
+
+TAP version 13
+# Subtest: 两种标本循环切换，向前与向后均不越界
+ok 1 - 两种标本循环切换，向前与向后均不越界
+  ---
+  duration_ms: 0.344
+  type: 'test'
+  ...
+# Subtest: 滚轮以主轴判断方向，兼容 Shift 映射为横向滚轮并忽略小抖动
+ok 2 - 滚轮以主轴判断方向，兼容 Shift 映射为横向滚轮并忽略小抖动
+  ---
+  duration_ms: 0.095666
+  type: 'test'
+  ...
+# Subtest: 手势需要垂直位移，点击、短滑与横滑不切换
+ok 3 - 手势需要垂直位移，点击、短滑与横滑不切换
+  ---
+  duration_ms: 0.059208
+  type: 'test'
+  ...
+# Subtest: 物种数据唯一且包含明确的科普限定
+ok 4 - 物种数据唯一且包含明确的科普限定
+  ---
+  duration_ms: 0.350083
+  type: 'test'
+  ...
+# Subtest: 四种翅形可三角化，几何坐标有限且在纹理范围内
+ok 5 - 四种翅形可三角化，几何坐标有限且在纹理范围内
+  ---
+  duration_ms: 4.340167
+  type: 'test'
+  ...
+# Subtest: 共享几何体、材质和纹理在标本销毁时各释放一次
+ok 6 - 共享几何体、材质和纹理在标本销毁时各释放一次
+  ---
+  duration_ms: 0.485625
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 67.215916
