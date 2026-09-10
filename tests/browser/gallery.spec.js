@@ -1,5 +1,24 @@
 import { test, expect } from '@playwright/test';
 
+test('footer GitHub 链接在桌面和窄屏可见且支持键盘', async ({ page }, testInfo) => {
+  await page.goto('/');
+  const link = page.getByRole('link', { name: 'GitHub 源码仓库（新窗口）' });
+  await expect(link).toHaveAttribute('href', 'https://github.com/nazhenhuiyi/butterfly-museum');
+  await expect(link).toHaveAttribute('target', '_blank');
+  await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  for (const width of [1440, 390, 320]) {
+    await page.setViewportSize({ width, height: 844 });
+    await link.scrollIntoViewIfNeeded();
+    await expect(link).toBeInViewport();
+    await link.focus();
+    await expect(link).toBeFocused();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const bounds = await link.boundingBox();
+    expect(bounds.height).toBeGreaterThanOrEqual(width <= 650 ? 44 : 24);
+  }
+  await page.locator('footer').screenshot({ path: testInfo.outputPath('footer.png') });
+});
+
 async function ready(page) {
   await page.goto('/');
   await expect(page.locator('#fallback')).toBeHidden();

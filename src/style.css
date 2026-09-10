@@ -14,3 +14,5 @@ footer{min-height:49px;display:flex;flex-wrap:wrap;gap:8px 24px;align-items:cent
 #flight-status{position:absolute;top:100%;right:0;margin-top:4px;font-size:10px;color:var(--muted);text-align:right}
 #flight-status:empty{display:none}
 #exit-flight{border-radius:24px;padding:0 12px;font-size:11px}
+.footer-links{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}footer a{display:inline-flex;align-items:center;min-height:24px;color:inherit;text-underline-offset:4px}footer a:hover{color:#cbdad5}
+@media(max-width:650px){footer a{min-height:44px}}
