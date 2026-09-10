@@ -8,6 +8,8 @@ mkdirSync(process.env.TMPDIR, { recursive: true });
 const chromePath = process.env.CHROME_PATH || (process.platform === 'darwin'
   ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
   : undefined);
+const port = process.env.E2E_PORT || '4173';
+const baseURL = `http://127.0.0.1:${port}`;
 
 export default defineConfig({
   testDir: './tests/browser',
@@ -16,15 +18,15 @@ export default defineConfig({
   retries: 0,
   reporter: [['list'], ['html', { open: 'never' }], ['json', { outputFile: 'test-results/results.json' }]],
   use: {
-    baseURL: 'http://127.0.0.1:4173',
+    baseURL,
     headless: true,
     launchOptions: { executablePath: chromePath },
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure'
   },
   webServer: {
-    command: 'npm run preview -- --port 4173 --strictPort',
-    url: 'http://127.0.0.1:4173',
+    command: `npm run preview -- --port ${port} --strictPort`,
+    url: baseURL,
     reuseExistingServer: false
   },
   projects: [

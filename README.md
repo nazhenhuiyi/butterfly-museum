@@ -1,106 +1,97 @@
-# 鳞光 · 蝴蝶博物馆
+# 鳞光 · 蝴蝶三维图谱
 
-> 最新状态：权限更新后已完成安装、生产构建、6 项单元测试和 16 项浏览器用例（另 2 项设备不适用跳过）。最终截图与限制见 [最终验收记录](evidence/FINAL-ACCEPTANCE.md)。
+基于具名博物馆标本照片的交互式蝴蝶学习图谱，使用 Three.js 与 Vite。静止观察与电影式飞行观赏分开，适配桌面和手机。
 
-首期独立数字自然展厅。使用 Vite、原生 JavaScript 和 Three.js，不需要后端、账号或 API 密钥，不请求外部模型、纹理或字体。点击参考链接时才离开站点。
+## 功能
 
-## 运行
+- 展示 **Morpho menelaus huebneri 雄性**与 **Danaus plexippus plexippus 雄性**。
+- 独立背腹面照片配准；支持背面、腹面、侧面快捷观察，以及拖拽旋转和缩放。
+- 连续头胸腹、体表鳞纹和短毛、触角、盘卷喙、两条退化前足与四条步行足的受约束三维重建。
+- 主动进入 24 秒循环的慢镜飞行：同步翅拍、有限翼面柔性、空间轨迹、跟随及弧线镜头。
+- 默认静止；支持暂停/继续、减少动态偏好、页面隐藏暂停，以及图片/WebGL 失败降级。
+- 科普信息、Wikipedia 与按需展开的来源说明，不需要账号、后端或环境密钥。
 
-需要 Node.js **22.12+**（本次实际使用 22.22.1）和 npm。
+## 本地运行
+
+需要 Node.js 22.12+ 和 npm。
 
 ```sh
 npm ci
 npm run dev
 ```
 
-浏览器打开终端显示的本地地址，默认端口 5173。仅本机监听，不自动向局域网开放。
-
 ```sh
 npm run build
-npm run preview -- --port 4173
+npm run preview -- --port 4193 --strictPort
 ```
 
-生产文件输出到 `dist/`。已验收版本现已迁回原项目目录，旧副本保留；不推送、不发布、不部署。迁回后的验证见 [迁回记录](evidence/MIGRATION-VALIDATION.md)。不要直接以 `file://` 打开源码 HTML：入口含 ES 模块和 CSS，需要开发服务器或构建后的静态服务器。
+构建产物为 `dist/`。运行时标本图片来自本站 `public/specimens/`；只有主动打开资料链接时才访问外部网站。
 
-## 展品
+## 操作
 
-- **大蓝闪蝶 / Morpho menelaus**：蓝色渐变、细鳞片条纹、暗色翅脉、黑色边缘及浅色小斑点；材质以虹彩近似结构色的角度变化。
-- **帝王蝶 / Danaus plexippus**：更尖长的前翅、较收窄的后翅、橙色底、粗黑翅脉、双列浅色边斑与躯干浅色小点。
-- 四片曲面翅、三维头胸腹、复眼、棒状触角及足部；以低幅度轻轻扇翅。聚光灯、冷暖补光与细环背景构成深色展厅。
-- 所有翅纹为确定性 Canvas 程序生成；左右翅共享纹理和几何体，切换时释放旧 GPU 资源，像素比上限为 2。
-
-**艺术化模型，非科研复原。** 翅形、翅脉、斑点及比例为可视化简化，不用于物种鉴定。背腹面复用纹理；并未真实复原腹面眼斑。两种标本归一到相近展示大小，不能据此比较真实翼展。
-
-## 交互与冲突处理
-
-| 区域 / 输入 | 行为 |
+| 输入 | 行为 |
 | --- | --- |
-| 展厅拖动 / 手机单指拖动 | 自由旋转，不自动切换 |
-| 展厅普通滚轮 / 触控板滚动 | 只缩放，不切换、不滚动文案 |
-| 展厅 Shift + 滚轮 | 只切换，500ms 节流；兼容浏览器将 Shift 滚轮映射到横轴 |
-| 上下按钮、↑ / ↓ 键 | 循环切换，同步模型、标题、学名、科普，并重置视角 |
-| 手机双指开合 | 缩放；禁用平移 |
-| 手机右侧上下导航区域垂直滑动 | 上滑下一种，下滑上一种；阈值 45px，点击与滑动互斥 |
-| 放大 / 缩小按钮 | 不依赖滚轮或多指操作的替代入口 |
-| 重置按钮；展厅聚焦时 R | 重置旋转与距离，清除旋转惯性 |
-| 展厅聚焦时 + / − | 放大 / 缩小 |
-| 科普面板滚轮 / 方向键 | 只滚动文案，不切换或缩放；桌面面板独立滚动 |
-| 手机科普区域滑动 | 正常页面滚动；触摸展厅保留给 3D 手势 |
+| 背面 / 腹面 / 侧面 | 回到对应静止观察面 |
+| 拖动 / 单指拖动 | 旋转模型（静止图谱模式） |
+| 滚轮 / 双指开合 / +、− | 缩放（静止图谱模式） |
+| Shift + 滚轮 / ↑、↓ / 导航按钮 | 切换物种 |
+| 手机导航区上下滑动 | 切换物种，不拦截科普区滚动 |
+| 重置 / 展厅聚焦后 R | 恢复默认背面视角 |
+| 飞行观赏 / 暂停飞行 / 继续飞行 | 进入或暂停/恢复独立飞行镜头 |
+| 回到图谱 / Esc | 退出飞行，恢复观察相机和拖拽缩放 |
 
-可使用 Tab 聚焦控件。切换结果通过 `aria-live` 播报，按钮提供中文名称和可见焦点。手机上下导航和主要工具按钮具有至少 44px 触控高度。
+飞行中换种会先回到图谱，再加载新标本。开启 `prefers-reduced-motion` 时，进入飞行仍暂停，可明确再次点击继续；动态开启减少动态会保持当前姿态暂停。页面隐藏后不累计动画时间。
 
-## 降级与减少动态
+## 标本、来源与科学限制
 
-- `prefers-reduced-motion: reduce` 默认暂停扇翅，关闭轨道阻尼和 CSS 过渡；也响应系统设置的实时变更。
-- 用户可明确点击「开启扇翅」恢复动画，「暂停扇翅」保持当前角度，不瞬间跳回初始姿态。
-- WebGL 2 创建失败或上下文丢失时显示中文提示，并禁用不可用的 3D 工具；仍可切换中文科普。
-- 上下文丢失后要求刷新恢复，不循环重建 WebGL。
+四张照片均由 **Didier Descouens / Muséum de Toulouse (MHNT)** 发布，采用 **CC BY-SA 4.0**。完整原图 URL、署名、许可与改编说明见 [资产署名](public/specimens/ATTRIBUTION.txt)。
 
-## 科学说明与参考
+- 闪蝶照片记录为巴西 Pará 的 huebneri 雄性；未确认个体馆藏号和采集日期。
+- 帝王蝶照片记录为魁北克 Lac Valmont 的雄性指名亚种，馆藏字段原文 `MNHT.CUT.2011.0.171`；照片日期不等于采集日期。
+- 两种模型按展示尺寸归一化，不宜用模型比较真实翼展。照片保留摄影光照条件，不模拟闪蝶结构色的完整光谱响应。
+- 头胸腹、足节、厚度、鳞毛与末端是有参考的近似，不是扫描；未达到科研测量或独立鉴定精度。
+- 飞行参考 Johansson 与 Henningsson 的银斑豹蛱蝶起飞研究和补充录像，**不是目标两物种的实测运动**。显示拍频、轨迹、镜头为慢镜展示选择，未求解空气动力学、精确翼翼接触或个体飞行收足姿势。
 
-正文解释闪蝶鳞片微纳结构产生的**结构色**；强调帝王蝶**北美部分种群**迁徙，而不是将所有帝王蝶都描述为迁徙者。东部与西部路线为概括，不表示每一个体都遵循同一路线。
+参考入口：
 
-页面列出以下阅读参考：
+- [Monarch Watch / University of Kansas：Monarch Biology](https://www.monarchwatch.org/biology/)
+- [NC State：Nymphalidae](https://genent.cals.ncsu.edu/insect-identification/order-lepidoptera/family-nymphalidae/)
+- [Johansson & Henningsson：柔性翼与起飞机制](https://doi.org/10.1098/rsif.2020.0854)
+- [起飞录像 Movie S1](https://rs.figshare.com/articles/journal_contribution/13585729)
+- [Vukusic 等：闪蝶结构色研究](https://doi.org/10.1098/rspb.1999.0794)
+- [USFWS：帝王蝶自然史](https://www.fws.gov/species/monarch-danaus-plexippus)
 
-1. Vukusic, P., Sambles, J. R., Lawrence, C. R. & Wootton, R. J. (1999). *Quantified interference and diffraction in single Morpho butterfly scales*. Proceedings of the Royal Society B, 266, 1403–1411。用于闪蝶结构色背景，不表示论文是本模型的几何复原依据。
-2. [US Fish & Wildlife Service — Monarch / Danaus plexippus](https://www.fws.gov/species/monarch-danaus-plexippus)：迁徙与非迁徙种群、越冬地点、乳草与多世代迁徙。
-
-权限更新后已实际读取 FWS 正文，并通过 Crossref API 核实论文 DOI 10.1098/rspb.1999.0794 的题名和作者；未通读论文全文，未做独立生物学审稿。页面已移除初稿的失效阅读链接。
+当前版本只分发运行所需照片；额外原始参考素材、私人工作日志、完整截图/录像及重复源码快照不纳入当前文件清单或站点。仓库保留早期 Git 历史，历史提交中的旧截图和工作记录仍可访问。
 
 ## 测试
 
 ```sh
 npm test
-npm run test:e2e
+npx playwright install chromium ffmpeg
+E2E_PORT=4194 npm run test:e2e
 ```
 
-单元测试检查循环切换、滚轮主轴、手势阈值、物种文案限定、翅形三角化与共享资源释放。它们**不能代替 WebGL 渲染或浏览器交互验收**。
+测试端口必须空闲，Playwright 不复用已有站点，结束后自行关闭测试服务。macOS 默认使用安装在标准位置的 Google Chrome；可通过 `CHROME_PATH` 指定浏览器可执行文件。其他平台使用 Playwright Chromium。
 
-浏览器测试在 macOS 默认使用 `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`，无需额外下载 Chromium。其他系统或自定义安装路径可设置：
+覆盖模型结构、循环/时钟与投影约束、桌面/手机交互、进入/退出飞行、reduce、页面可见性分支、异步换种和降级。手机用例为 Chromium 仿真，不代替实体手机、Safari 或生物学准确性验证。构建可能报告主包超过 500kB 的提示。
 
-```sh
-CHROME_PATH="/absolute/path/to/chrome" npm run test:e2e
-```
+## Vercel 部署
 
-测试先构建，再自行启动 4173 端口的生产预览服务器；若端口占用会失败，不复用其他项目的服务器。桌面尺寸为 1440×1000，手机仿真尺寸为 390×844；手机手势使用 Chrome DevTools Protocol 发送触摸事件，**并非物理手机测试**。覆盖切换、模型数据同步、旋转、缩放、重置、滚轮分工、文案滚动、触摸导航、双指缩放、reduced-motion、WebGL 不可用以及模拟上下文丢失。
+将此项目导入 Vercel，使用 Vite 预设：`npm run build`，输出目录 `dist`。`vercel.json` 已声明这些设置，不需要环境变量。
 
-真正成功执行相关用例后，`test-results/` 下才会出现 `morpho.png`、`monarch.png`、`mobile-touch.png`、`webgl-fallback.png` 等截图；报告在 `playwright-report/`。存在测试脚本不意味着测试已经通过。
-
-### 本次实际结果（2026-09-09）
-
-- 最初曾受到网络与 Chrome 沙箱限制；任务权限更新后已成功执行在线安装、锁文件离线重装与生产构建。
-- 单元测试 6/6 通过；本机 Chrome 152.0.7977.83 生产构建浏览器测试 16 通过、0 失败、2 按设备跳过。
-- 已生成桌面/手机两种标本及降级截图，覆盖模型同步、旋转缩放、键盘、滚轮分工、触摸手势、文案滚动、reduced-motion 和 WebGL 失效。
-- 旧副本最终日志为 evidence/*-final.log，最终截图和源码哈希见 evidence/FINAL-ACCEPTANCE.md；早期 baseline/ 及旧日志只保留在旧副本，不迁回。
-- 手机测试为 CDP 仿真，物理手机、Safari/Firefox、低端 GPU 性能和屏幕阅读器实测仍未验证。
-- 主 JS 包约 539kB（gzip 139kB），有体积提示，不影响构建成功。
+也可在自己的账号完成 CLI 登录后使用 `npx vercel --prod`。`.vercel/` 关联元数据仅留本地；`.vercelignore` 排除证据、缓存、日志与测试输出。Git 自动部署需要账号对该仓库的 GitHub 集成授权，不能仅凭一次 CLI 部署推断已接通。
 
 ## 源码导航
 
-- `src/butterfly.js`：翅形、程序化纹理、立体躯体、资源释放。
-- `src/species.js`：两种展品及中文科普数据。
-- `src/interaction.js`：可独立测试的导航规则。
-- `src/main.js`：场景、轨道控制、事件、同步与降级。
-- `src/style.css` / `index.html`：响应式展厅、科普面板与无障碍语义。
-- `tests/` / `playwright.config.js`：单元与桌面、手机尺寸浏览器测试。
-- `evidence/`：旧副本最终验收日志、桌面/手机截图、源码哈希，以及迁回后的验证记录。
+- `src/morphology.js`：标本记录、手工对应轮廓与配准数据。
+- `src/butterfly.js`、`src/body.js`：双面翼面、身体几何、翅根与资源释放。
+- `src/flight.js`：飞行采样、时钟、镜头过渡与轻量背景。
+- `src/main.js`、`src/interaction.js`：界面、观察控制、异步加载与状态切换。
+- `src/species.js`：科普、差异与来源。
+- `tests/`：单元与浏览器回归。
+
+## 权利说明
+
+照片、据照片描绘的轮廓/配准及相关改编遵循资产署名中的 **CC BY-SA 4.0**；再分发或改编时须保留相应署名与许可。此项目不暗示博物馆或摄影师背书。
+
+**本仓库没有为无关原创应用代码另行指定开源许可证。** 公开可见不表示所有代码和资产统一采用 MIT；第三方依赖保留各自许可证。

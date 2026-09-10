@@ -1,0 +1,87 @@
+鳞光 · 蝴蝶三维图谱 / Specimen image attribution
+
+All four photographs: Didier Descouens, Muséum de Toulouse (MHNT).
+License chosen for reuse: Creative Commons Attribution-ShareAlike 4.0 International.
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Morpho menelaus huebneri, adult male, Pará, Brazil.
+Dorsal: https://commons.wikimedia.org/wiki/File:Morpho_menelaus_huebneri_MHNT_Male_Dos.jpg
+Ventral: https://commons.wikimedia.org/wiki/File:Morpho_menelaus_huebneri_MHNT_Male_ventre.jpg
+Local files: morpho-dorsal.jpg, morpho-ventral.jpg.
+No individual accession number or collection date confirmed on these image pages.
+
+Danaus plexippus plexippus, adult male, Lac Valmont, Quebec, Canada.
+Collection field as printed: MNHT.CUT.2011.0.171.
+Collection date not verified; 6 April 2012 is a photo date, not a collection date.
+Dorsal: https://commons.wikimedia.org/wiki/File:Danaus_plexippus_MHNT_dos.jpg
+Ventral: https://commons.wikimedia.org/wiki/File:Danaus_plexippus_MHNT_ventre.jpg
+Local files: monarch-dorsal.jpg, monarch-ventral.jpg.
+
+Downloaded from Wikimedia Commons at 1280px width on 2026-09-09.
+The JPEG files are the unaltered Commons thumbnail responses, including the photographer's scale bars.
+They are not AI-generated or newly photographed specimens.
+
+Adaptations in this application: hand-traced boundaries in src/morphology.js;
+piecewise registration of separate dorsal/ventral photographs to four shallow curved
+wing meshes; view-dependent face culling; image areas outside each wing are excluded
+by geometry, not by removing light-colored scale patches. Boundary vertices only
+are moved inward off the near-white background, with a 1.5px safety inset; this is
+an approximate contour, not an exact pixel-level specimen measurement. The entire image is not
+displayed as a flat butterfly billboard. Original scale bars are outside the wing
+meshes; this is NOT a physical measurement tool.
+
+The photographic textures, traced outline/registration data and their rendered
+adaptations are provided under CC BY-SA 4.0. Retain this attribution and the license
+when redistributing or adapting them. No MHNT/photographer endorsement is implied.
+This asset notice does not assign a license to unrelated application code.
+
+Methods and limits:
+The dorsal outline determines each mesh; the corresponding ventral outline is
+registered to it. Left/right pattern differences in the source photographs are
+retained. Wing-root areas hidden by the thorax and small overlaps are incomplete.
+Venation and markings are photographic surface evidence, not a 3D vein scan.
+No artificial radial lines, decorative circles, or copied dorsal texture on the
+ventral face are added. The Morpho hue records the lighting of the specimen photo;
+angle-dependent optical spectra are not reconstructed.
+Body thickness, segment volumes, leg joint positions and shallow wing camber are
+approximate reconstructions. Reduced forelegs and four walking legs follow the
+family anatomy, not an invented six-equal-leg plan. Specimen wear and taxonomic
+variation are described in the interface. This learning atlas is not validated for
+research measurement or standalone species identification.
+
+Anatomical references:
+https://www.monarchwatch.org/biology/ (University of Kansas Monarch Watch)
+https://genent.cals.ncsu.edu/insect-identification/order-lepidoptera/family-nymphalidae/ (NC State)
+
+Original scientific/context sources retained:
+https://doi.org/10.1098/rspb.1999.0794
+https://www.fws.gov/species/monarch-danaus-plexippus
+Wikipedia is an entry point only, not the source for the traced morphology.
+
+Body refinement, 10 September 2026:
+The original MHNT photographs were inspected at full resolution for head/thorax
+proportions, dorsal and ventral body markings, scale cover, and abdomen profile.
+New body surfaces use hand-authored procedural color/relief and attached short
+scale geometry, not additional photographic body textures. Body pattern/profile
+adaptations based on the MHNT images retain the above CC BY-SA 4.0 attribution.
+No new reference image is loaded by the running application.
+
+Supplementary viewing references (not the same specimens; not pattern donors):
+Lorie Shaull, CC BY-SA 2.0, head/thorax macro:
+https://commons.wikimedia.org/wiki/File:Closeup_of_a_monarch_head,_newly_emerged_from_the_chrysalis_(29707955337).jpg
+Steve Jurvetson, CC BY 2.0, monarch lateral view:
+https://commons.wikimedia.org/wiki/File:Jurvetson_-_First_Canon_D10_Photo_(by).jpg
+Laura Erickson, CC BY-SA 4.0, monarch forelegs and walking legs:
+https://commons.wikimedia.org/wiki/File:Monarch_showing_all_six_legs._The_forelegs_are_flat_against_the_upper_thorax_to_the_head.jpg
+Jean-Paul Boerekamps, CC0, research-grade Morpho menelaus observation,
+Brownsweg, Suriname, observed 2 January 2026:
+https://www.inaturalist.org/observations/339774357
+Sex and subspecies are not verified for these supplementary photographs.
+Research grade is a community identification status, not a museum determination.
+The side-view Morpho's pale colors were NOT transferred to the huebneri model.
+
+All downloaded references, per-photo licenses, rejected/limited sources, visual
+comparisons and approximation boundaries are archived separately in
+evidence/body-refinement/. This does not replace historical morphology evidence.
+Eye facet count, hair density, leg depth, joint angles, hidden wing roots,
+terminal genital structures and precise body cross-sections remain unmeasured.

@@ -1,0 +1,17 @@
+evidence/
+.git/
+.browser-tmp/
+.npm-cache/
+.shell-temp*
+node_modules/
+dist/
+test-results/
+playwright-report/
+tests/
+.env*
+*.pem
+*.key
+*.log
+.DS_Store
+README.md
+playwright.config.js

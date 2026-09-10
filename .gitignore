@@ -5,4 +5,12 @@ playwright-report/
 .npm-cache/
 .shell-temp*
 .browser-tmp/
-.browser-tmp/
+evidence/
+.vercel/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.log
+.DS_Store
